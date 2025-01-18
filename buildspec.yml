@@ -2,18 +2,14 @@ version: 0.2
 
 env:
   variables:
-    ECR_REPOSITORY: 569313629397.dkr.ecr.ap-northeast-1.amazonaws.com/api-repository
-    DOCKER_SECRET_VALUE: "arn:aws:secretsmanager:ap-northeast-1:569313629397:secret:prod/docker-login-wxUTwm"
+    ECR_REPOSITORY: "569313629397.dkr.ecr.ap-northeast-1.amazonaws.com/api-repository"
+    DOCKER_HUB_USERNAME: "arn:aws:secretsmanager:ap-northeast-1:569313629397:secret:prod/docker-login-wxUTwm:DOCKER_HUB_USERNAME"
+    DOCKER_HUB_PASSWORD: "arn:aws:secretsmanager:ap-northeast-1:569313629397:secret:prod/docker-login-wxUTwm:DOCKER_HUB_PASSWORD"
 
 phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - echo $DOCKER_SECRET_VALUE
-      - which jq
-      - echo $?
-      - DOCKER_HUB_USERNAME="sakenoate"
-      - DOCKER_HUB_PASSWORD="dckr_pat_bi_e_pEwC-a8Xa1hmsQIEgA8am4"
       - echo $DOCKER_HUB_PASSWORD | docker login --username $DOCKER_HUB_USERNAME --password-stdin ${ECR_REPOSITORY}
   build:
     commands:
