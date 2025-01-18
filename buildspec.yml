@@ -9,6 +9,9 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
+      - echo $DOCKER_SECRET_VALUE
+      - which jq
+      - echo $?
       - DOCKER_HUB_USERNAME=$(echo $DOCKER_SECRET_VALUE | jq -r '.DOCKER_HUB_USERNAME')
       - DOCKER_HUB_PASSWORD=$(echo $DOCKER_SECRET_VALUE | jq -r '.DOCKER_HUB_PASSWORD')
       - echo $DOCKER_HUB_PASSWORD | docker login --username $DOCKER_HUB_USERNAME --password-stdin ${ECR_REPOSITORY}
