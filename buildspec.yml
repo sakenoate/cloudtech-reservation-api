@@ -3,12 +3,15 @@ version: 0.2
 env:
   variables:
     ECR_REPOSITORY: 569313629397.dkr.ecr.ap-northeast-1.amazonaws.com/api-repository
+    DOCKER_SECRET_VALUE: "arn:aws:secretsmanager:ap-northeast-1:569313629397:secret:prod/docker-login-wxUTwm"
 
 phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin ${ECR_REPOSITORY}
+      - DOCKER_HUB_USERNAME = $(echo $DOCKER_SECRET_VALUE | jq -r '.DOCKER_HUB_USERNAME')
+      - DOCKER_HUB_PASSWORD = $(echo $DOCKER_SECRET_VALUE | jq -r '.DOCKER_HUB_PASSWORD')
+      - echo $DOCKER_HUB_PASSWORD | docker login --username $DOCKER_HUB_USERNAME --password-stdin ${ECR_REPOSITORY}
   build:
     commands:
       - echo Building the Docker image...
