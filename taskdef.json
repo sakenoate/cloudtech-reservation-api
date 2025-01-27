@@ -2,13 +2,13 @@
     "containerDefinitions": [
         {
             "name": "sp10-task-container",
-            "image": "<IMAGE1_NAME>",
+            "image": "IMAGE1_NAME",
             "cpu": 0,
             "portMappings": [
                 {
-                    "name": "sp10-task-container-80-tcp",
-                    "containerPort": 80,
-                    "hostPort": 80,
+                    "name": "sp10-task-container-8080-tcp",
+                    "containerPort": 8080,
+                    "hostPort": 8080,
                     "protocol": "tcp",
                     "appProtocol": "http"
                 }
@@ -37,7 +37,7 @@
     "family": "sp10-handson-task",
     "executionRoleArn": "arn:aws:iam::569313629397:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 1,
+    "revision": 2,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -83,7 +83,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2025-01-27T13:15:40.017Z",
+    "registeredAt": "2025-01-27T16:17:09.734Z",
     "registeredBy": "arn:aws:iam::569313629397:user/Administrator++",
     "enableFaultInjection": false
 }
