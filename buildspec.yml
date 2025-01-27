@@ -26,9 +26,12 @@ phases:
             "name": "container-test-app",
             "imageUri": "'${ECR_REPOSITORY}':latest"
           }
-        ]' > imagedefinitions.json
-      - echo imagedefinitions.json created.
+        ]' > ImageDetail.json
+      - echo ImageDetail.json created.
 
 artifacts:
   files:
-    - imagedefinitions.json
+#    - imagedefinitions.json
+    - appspec.yml
+    - taskdef.json
+    - imageDetail.json
