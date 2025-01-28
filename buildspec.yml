@@ -20,9 +20,9 @@ phases:
       - docker push ${ECR_REPOSITORY}:latest
       - echo Build completed on `date`
       - echo Creating imagedefinitions.json...
-      - printf '{"ImageURI":"%s"}' ${ECR_REPOSITORY}:latest > ImageDetail.json
-      - cat ImageDetail.json
-      - echo ImageDetail.json created.
+      - printf '{"ImageURI":"%s"}' ${ECR_REPOSITORY}:latest > imageDetail.json
+      - cat imageDetail.json
+      - echo imageDetail.json created.
 
 artifacts:
   files:
